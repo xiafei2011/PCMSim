@@ -1,0 +1,43 @@
+
+1. About PCMSim ---------------------------------------------------------
+	The PCMSim is developed based on the cycle accurate simulator DRAMSim2.
+
+	Since PCM is non-volatile, PCMSim does not refresh PCM rows. For a READ request
+	in ClosePage rowbuffer policy, PCMSim does not precharge data to PCM rows.	
+
+	The energy and latency parameters of PCM is based on the paper[1]. 
+	
+	PCMSim can be extended to simulate other NVMs by modify the latency and energy parameters. 
+	
+	Please contact Fei Xia if you have any questions. 
+	Contact info: xiafei2011@ict.ac.cn, or xia.flover@gmail.com
+
+2. Building PCMSim ---------------------------------------------------------
+
+	To build an optimized PCMSim simply type
+
+	$ make
+
+	For a debug build which contains debugging symbols and verbose output, run:
+
+	$ make DEBUG=1
+
+	this will compile an executable called PCMSim which can run a
+	trace-based simulation. 
+
+	To build the PCMSim library, type: 
+
+	$ make libpcmsim.so 
+	
+
+3. Running PCMSim -----------------------------------------------------------
+	
+	First, run the preprocessor on the gzipped traces:
+		cd traces
+		./traceParse.py trace.tar.gz
+	
+	Then, go back to the PCMSim directory and run PCMSim.
+		The shell script run_pcmsim.sh gives an example of running the HMSim1.
+
+
+[1]. Architecting phase change memory as a scalable dram alternative. ISCA'2009
